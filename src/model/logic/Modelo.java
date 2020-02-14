@@ -33,20 +33,21 @@ public class Modelo<T> {
 		try {
 			Nodo<Features> primero = new Nodo<Features>(null, (Features) listaFeatures.get(0));
 			Nodo<Features> ultimo = new Nodo<Features>(null,(Features)listaFeatures.get(listaFeatures.size()-1));
-			primeroCola = primero.getFeature().toString();
-			primeroPila = ultimo.getFeature().toString();
 			listaFeatures.remove(0);
 			colaComparendos = new Queue<T>((Nodo<T>) primero);
-			pilaComparendos = new Stack<T>((Nodo<T>) ultimo);
+			pilaComparendos = new Stack<T>((Nodo<T>) primero);
 			listaFeatures.forEach(feature -> {
 				nodoComparendo = new Nodo<T>(null,(T) feature);
 				colaComparendos.enqueue(nodoComparendo);
 				pilaComparendos.push(nodoComparendo);
 			});
+			primeroPila = ""+ultimo.getFeature().toString();
+			primeroCola = ""+primero.getFeature().toString();
+			tamanio = pilaComparendos.getSize();
 		}catch (Exception e){e.printStackTrace();}
 	}
 	public int darTamanio(){
-		return colaComparendos.size();
+		return tamanio;
 	}
 	public Queue<T> procesarCluster(){
 		Queue<T> cluster = null;
