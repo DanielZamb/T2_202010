@@ -1,8 +1,6 @@
 package view;
 
-import model.logic.Modelo;
-
-public class View 
+public class View
 {
 	    /**
 	     * Metodo constructor

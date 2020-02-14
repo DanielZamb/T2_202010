@@ -1,8 +1,8 @@
 package controller;
 
+import model.logic.*;
 import java.util.Scanner;
 
-import model.logic.Modelo;
 import view.View;
 
 public class Controller {
@@ -13,10 +13,7 @@ public class Controller {
 	/* Instancia de la Vista*/
 	private View view;
 	
-	/**
-	 * Crear la vista y el modelo del proyecto
-	 * @param capacidad tamaNo inicial del arreglo
-	 */
+
 	public Controller ()
 	{
 		view = new View();
