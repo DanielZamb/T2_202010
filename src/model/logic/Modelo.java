@@ -66,7 +66,21 @@ public class Modelo<T> {
 		}
 		return cluster;
 	}
-
+	public Queue<T> procesarStack(int numElementos, String infraccion){
+		Queue<T> rta = null;
+		int contador = 0;
+		Nodo<Features> evaluado = (Nodo<Features>) pilaComparendos.pop();
+		while (contador<=numElementos && !pilaComparendos.isEmpty()){
+			if (evaluado.getFeature().getProperties().getINFRACCION().equals(infraccion)){
+				rta.enqueue((Nodo<T>) evaluado);
+			}
+			else
+			{
+				evaluado = (Nodo<Features>) pilaComparendos.pop();
+			}
+		}
+		return rta;
+	}
 	public String getPrimeroCola() {
 		return primeroCola;
 	}

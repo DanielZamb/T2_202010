@@ -10,7 +10,7 @@ public class Stack<T> extends ListaEncadenada {
         tamanio = super.getTamanio();
 
     }
-    boolean isEmpty()
+    public boolean isEmpty()
     {
         boolean respuesta = false;
         tamanio = super.getTamanio();
