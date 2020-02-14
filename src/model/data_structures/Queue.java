@@ -36,9 +36,9 @@ public class Queue<T> extends ListaEncadenada{
         tamanio = super.getTamanio();
     }
 
-    public Nodo dequeue ()
+    public Nodo<T> dequeue ()
     {
-        Nodo respuesta = first;
+        Nodo<T> respuesta = first;
         super.deleteNode(super.getTamanio()-1);
         first = (Nodo<T>) super.getUltimoNodo();
         tamanio = super.getTamanio();
@@ -62,12 +62,12 @@ public class Queue<T> extends ListaEncadenada{
         return tamanio;
     }
 
-    public Nodo darPrimero()
+    public Nodo<T> darPrimero()
     {
         return first;
     }
 
-    public Nodo darUltimo()
+    public Nodo<T> darUltimo()
     {
         return last;
     }

@@ -50,6 +50,22 @@ public class Modelo<T> {
 	public int darTamanio(){
 		return tamanio;
 	}
+	public Queue<T> procesarCluster(){
+		Queue<T> cluster = null;
+		Nodo<Features> referencia = (Nodo<Features>) colaComparendos.dequeue();
+		String infracRef = referencia.getFeature().getProperties().getDES_INFRAC();
+		cluster.enqueue((Nodo<T>) referencia);
+		while (referencia!= null && !colaComparendos.isEmpty()){
+			Nodo<Features> evaluado = (Nodo<Features>) colaComparendos.dequeue();
+			String comp = evaluado.getFeature().getProperties().getDES_INFRAC();
+			if(infracRef.equals(comp)){
+				colaComparendos.enqueue((Nodo<T>) evaluado);
+			}else{
+				referencia = evaluado;
+			}
+		}
+		return cluster;
+	}
 
 	public String getPrimeroCola() {
 		return primeroCola;

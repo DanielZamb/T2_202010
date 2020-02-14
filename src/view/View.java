@@ -1,5 +1,5 @@
 package view;
-
+import model.logic.*;
 public class View
 {
 	    /**

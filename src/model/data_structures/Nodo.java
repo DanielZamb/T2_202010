@@ -1,15 +1,15 @@
 package model.data_structures;
 
 public class Nodo<T> {
-    private T siguiente;
+    private Nodo<T> siguiente;
     private T info;
 
-    public Nodo(T siguiente, T features){
+    public Nodo(Nodo<T> siguiente, T features){
         this.siguiente = siguiente;
         this.info = features;
     }
 
-    public T getSiguiente() {
+    public Nodo<T> getSiguiente() {
         return siguiente;
     }
 
@@ -18,7 +18,7 @@ public class Nodo<T> {
     }
 
 
-    public void setSiguiente(T siguiente) {
+    public void setSiguiente(Nodo<T> siguiente) {
         this.siguiente = siguiente;
     }
 

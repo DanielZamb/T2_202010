@@ -1,8 +1,8 @@
 package controller;
 
 import com.google.gson.Gson;
-import model.data_structures.Comparendos;
-import model.data_structures.Features;
+import com.sun.source.tree.WhileLoopTree;
+import model.data_structures.*;
 import model.logic.*;
 
 import java.io.BufferedReader;
@@ -54,12 +54,17 @@ public class Controller {
 				    view.printMessage("Primer comparendo de Stack:\n"+"\t"+modelo.getPrimeroPila()+ "\n---------");
 					break;
 				case 2:
-					view.printMessage("--------- \nDar cadena (simple) a ingresar: ");
-					dato = lector.next();
-					modelo.agregar(dato);
-					view.printMessage("Dato agregado");
-					view.printMessage("Numero actual de elementos " + modelo.darTamano() + "\n---------");						
-					break;
+					view.printMessage("--------- \nHallar Cluster de comparendos en Queue: ");
+					view.printMessage("Loading...");
+					Queue<Features> cluster = (Queue<Features>) modelo.procesarCluster();
+					view.printMessage("Numero de comparendos en el cluster : "+ cluster.size());
+					view.printMessage("Cluster de comparendos: \n");
+					Nodo<Features> actual = new Nodo<Features>((Nodo<Features>) cluster.getPrimerNodo().getSiguiente(),cluster.darPrimero().getFeature());
+					while(actual!=null && !cluster.isEmpty()) {
+						view.printMessage("\t"+actual.getFeature().toString()+"\n");
+						actual = actual.getSiguiente();
+					}
+				break;
 
 				case 3:
 					view.printMessage("--------- \nDar cadena (simple) a buscar: ");

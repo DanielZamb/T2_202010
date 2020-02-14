@@ -22,10 +22,6 @@ public class Features {
         this.geometry = geometry;
     }
 
-    public Properties DarProperties(){
-        return properties;
-    }
-
     public void setProperties(Properties properties) {
         this.properties = properties;
     }
