@@ -72,7 +72,7 @@ public class ListaEncadenada<T>{
 
     public void AppendNode(Nodo<T> nuevo){
         primeroAntiguo = primerNodo;
-        nuevo.setSiguiente((T) primerNodo);
+        nuevo.setSiguiente((Nodo<T>) primerNodo);
         primerNodo = nuevo;
         tamanio++;
     }

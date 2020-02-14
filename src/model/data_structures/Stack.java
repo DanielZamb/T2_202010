@@ -23,7 +23,7 @@ public class Stack<T> extends ListaEncadenada {
 
     public void push(Nodo<T> nodo)
     {
-        super.AppendNode(nodo);
+        super.AppendNode((Nodo<T>)nodo);
         top = super.getPrimerNodo();
         tamanio = super.getTamanio();
 
