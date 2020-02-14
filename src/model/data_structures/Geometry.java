@@ -22,5 +22,11 @@ public class Geometry {
     public void ponerType(String pTipo){
         type = pTipo;
     }
+    @Override
+    public String toString(){
+        String str = "type : "+this.type+",\n"+
+                "geometry : ["+this.coordinates.get(0)+","+this.coordinates.get(1)+","+this.coordinates.get(2)+"]\n";
+        return str;
+    }
 
 }

@@ -25,12 +25,4 @@ public class Nodo<T> {
     public void setInfo(T feature) {
         this.info = feature;
     }
-    @Override
-    public String toString(){
-        String rta = "";
-        try{
-        rta = "properties del nodo: " + this.getFeature().getClass().getField("properties") ;
-    }catch (Exception e){e.printStackTrace();}
-    return rta;
-    }
 }

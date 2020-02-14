@@ -37,4 +37,12 @@ public class Features {
     public Properties getProperties() {
         return properties;
     }
+    @Override
+    public String toString(){
+        String str ="Caracteristicas:\n"+
+                "\t"+this.properties.toString()+
+                "Coordenadas GPS:\n"+
+                "\t"+this.geometry.toString();
+        return str;
+    }
 }

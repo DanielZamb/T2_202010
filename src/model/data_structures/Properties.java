@@ -82,77 +82,15 @@ public class Properties {
         this.LOCALIDAD = lOCALIDAD;
     }
 
+    public String toString(){
+        String str ="OBJECTID : "+ this.OBJECTID +",\n"+
+                "FECHA_HORA : "+ this.FECHA_HORA +",\n"+
+                "MEDIO_DETE : "+ this.MEDIO_DETE +",\n"+
+                "CLASE_VEHI : "+ this.CLASE_VEHI +",\n"+
+                "TIPO_SERV : "+ this.TIPO_SERVI +",\n"+
+                "INFRACCION : "+ this.INFRACCION +",\n"+
+                "DESC_INFRAC : "+ this.DES_INFRAC +",\n"+
+                "LOCALIDAD : "+ this.LOCALIDAD +"\n";
+        return str;
+    }
 }
-
-/*
-    private Integer oBJECTID;
-    private String fECHAHORA;
-    private String mEDIODETE;
-    private String cLASEVEHI;
-    private String tIPOSERVI;
-    private String iNFRACCION;
-    private String dESCINFRAC;
-    private String lOCALIDAD;
-
-    public Properties(int pId,String pFecha,String pMedio,String pClase,String pTipo,String pInfraccion,String pDesc,String pLocalidad){
-        oBJECTID = pId;
-        fECHAHORA = pFecha;
-        mEDIODETE = pMedio;
-        cLASEVEHI = pClase;
-        tIPOSERVI = pTipo;
-        iNFRACCION = pInfraccion;
-        dESCINFRAC = pDesc;
-        lOCALIDAD = pLocalidad;
-
-    }
-
-    public Integer DarObjectID(){
-        return oBJECTID;
-    }
-    public void ponerObjID(Integer Id){
-        oBJECTID = Id;
-    }
-    public void ponerFecha(String pFecha){
-        fECHAHORA = pFecha;
-    }
-    public void ponerClaseVeh(String pClase){
-        cLASEVEHI = pClase;
-    }
-    public void ponerMedioDeteccion(String pMedio){
-        mEDIODETE = pMedio;
-    }
-    public void ponerDescInfracccion(String pDescripcion){
-        dESCINFRAC = pDescripcion;
-    }
-    public void ponerTipoServicio(String pTipoS){
-        tIPOSERVI = pTipoS;
-    }
-    public void ponerLocalidad(String pLocalidad){
-        lOCALIDAD = pLocalidad;
-    }
-    public void ponerInfraccion(String pInfraccion){
-        iNFRACCION = pInfraccion;
-    }
-    public String DarFecha(){
-        return fECHAHORA;
-    }
-    public String DarClaseVeh(){
-        return cLASEVEHI;
-    }
-    public String DarMedioDeteccion(){
-        return mEDIODETE;
-    }
-    public String DarCodInfraccion(){
-        return iNFRACCION;
-    }
-    public String DarDescInfraccion(){
-        return dESCINFRAC;
-    }
-    public String DarTipoServicio(){
-        return tIPOSERVI;
-    }
-    public String DarLocalidad(){
-        return lOCALIDAD;
-    }
-
-}*/

@@ -17,8 +17,10 @@ public class Modelo<T> {
 	 */
 	private Queue<T> colaComparendos;
 	private Stack<T> pilaComparendos;
-	private ListaEncadenada<T> listaComparendos;
 	private Nodo<T> nodoComparendo;
+	private String primeroPila;
+	private String primeroCola;
+	private int tamanio;
 
 
 	public Modelo(){
@@ -30,6 +32,9 @@ public class Modelo<T> {
 	public void cargarComparendos(List<T> listaFeatures){
 		try {
 			Nodo<Features> primero = new Nodo<Features>(null, (Features) listaFeatures.get(0));
+			Nodo<Features> ultimo = new Nodo<Features>(null,(Features)listaFeatures.get(listaFeatures.size()-1));
+			primeroCola = primero.toString();
+			primeroPila = ultimo.toString();
 			listaFeatures.remove(0);
 			colaComparendos = new Queue<T>((Nodo<T>) primero);
 			listaFeatures.forEach(feature -> {
@@ -39,6 +44,18 @@ public class Modelo<T> {
 				pilaComparendos.push(nodoComparendo);
 				System.out.println("tamaño del stack: "+pilaComparendos.getSize());
 			});
+			tamanio = pilaComparendos.getSize();
 		}catch (Exception e){e.printStackTrace();}
+	}
+	public int darTamanio(){
+		return tamanio;
+	}
+
+	public String getPrimeroCola() {
+		return primeroCola;
+	}
+
+	public String getPrimeroPila() {
+		return primeroPila;
 	}
 }
