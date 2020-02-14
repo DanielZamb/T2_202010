@@ -1,60 +1,54 @@
 package model.data_structures;
 
-public class Queue extends ListaEncadenada{
+public class Queue<T> extends ListaEncadenada{
 
-    private Nodo first;
-    private Nodo last;
+    private Nodo<T> first;
+    private Nodo<T> last;
     private int tamanio;
 
-
-    public Queue()
+    /**
+     * la vaina acá es que toca usar los nodos de la super clase al reves<br>
+     * es decir, el "ultimoNodo" de la super clase es el nodo que se añadio<br>
+     * primero a la Cola en terminos de tiempo.  Porque? porque la super hace un append por la izquierda.
+     * @param primero primer nodo de tipo T que se añade a la cola.
+     */
+    public Queue(Nodo<T> primero)
     {
-        first= null;
-        last=null;
-        tamanio=0;
+        super(primero);
+        first = (Nodo<T>) super.getUltimoNodo();
+        last = (Nodo<T>) super.getPrimerNodo();
+        tamanio = super.getTamanio();
     }
 
-    public void enqueue(Nodo nodo) {
+    public void enqueue(Nodo<T> nodo) {
         if (first==null)
         {
-            first= nodo;
-            last= nodo;
-            tamanio++;
+            super.AppendNode(nodo);
+            super.setUltimoNodo(nodo);
+            first = (Nodo<T>)super.getUltimoNodo();
+            last = (Nodo<T>)super.getPrimerNodo();
+            tamanio = super.getTamanio();
         }
-
-        else
-            nodo.setSiguiente(last);
-        last= nodo;
-
-        tamanio++;
+        else {
+            super.AppendNode(nodo);
+            last = (Nodo<T>)super.getPrimerNodo();
+        }
+        tamanio = super.getTamanio();
     }
 
     public Nodo dequeue ()
     {
         Nodo respuesta = first;
-        Nodo actual = last;
-
-
-        while (actual != first)
-        {
-            if (actual.getSiguiente().equals(first))
-            {
-                actual.setSiguiente(null);
-                actual= first;
-
-            }
-            else
-                actual = actual.getSiguiente();
-        }
-
-        tamanio --;
-
+        super.deleteNode(super.getTamanio()-1);
+        first = (Nodo<T>) super.getUltimoNodo();
+        tamanio = super.getTamanio();
         return respuesta;
     }
 
     public boolean isEmpty()
     {
         boolean respuesta = false;
+        tamanio = getTamanio();
         if(tamanio==0)
         {
             respuesta = true;
