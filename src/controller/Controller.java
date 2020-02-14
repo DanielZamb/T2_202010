@@ -67,13 +67,19 @@ public class Controller {
 				break;
 				case 3:
 					view.printMessage("--------- \nDar Queue con comparendos procesados del Stack: ");
-					view.printMessage("--------- \nDigite el numero de elementos a procesar: ");
+					view.printMessage("--------- \nDigite el numero de elementos a procesar");
 					dato = lector.nextInt();
-					view.printMessage("--------- \nDigite la infraccion que quiere consultar en los n elementos del Stack: ");
+					view.printMessage("--------- \nDigite la infraccion que quiere consultar en los n elementos del Stack");
 					infraccion = lector.next();
 					Queue<Features> rta = (Queue<Features>) modelo.procesarStack(dato,infraccion);
-
-					view.printMessage("Numero actual de elementos " +  "\n---------");
+					view.printMessage("Numero de comparendos en Queue : "+ rta.size());
+					view.printMessage("Queue de comparendos: \n");
+					Nodo<Features> actual1 = new Nodo<Features>((Nodo<Features>) rta.getPrimerNodo().getSiguiente(),rta.darPrimero().getFeature());
+					while(actual1!=null && !rta.isEmpty()) {
+						view.printMessage("\t"+actual1.getFeature().toString()+"\n");
+						actual1 = actual1.getSiguiente();
+					}
+					view.printMessage("---------");
 					break;
 				default: 
 					view.printMessage("--------- \n Opcion Invalida !! \n---------");
