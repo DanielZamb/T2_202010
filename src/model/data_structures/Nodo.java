@@ -13,7 +13,7 @@ public class Nodo<T> {
         return siguiente;
     }
 
-    public T getFeature() {
+    public T getInfo() {
         return info;
     }
 

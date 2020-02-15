@@ -39,10 +39,21 @@ public class Queue<T> extends ListaEncadenada{
     public Nodo<T> dequeue ()
     {
         Nodo<T> respuesta = first;
+        if(first == last){
+            super.setPrimerNodo(null);
+            super.setUltimoNodo(null);
+            super.setPrimeroAntiguo(null);
+            first = (Nodo<T>) super.getUltimoNodo();
+            last = (Nodo<T>) super.getPrimerNodo();
+            super.setTamanio(0);
+            tamanio = super.getTamanio();
+         return respuesta;
+        }
+        else {
         super.deleteNode(super.getTamanio()-1);
         first = (Nodo<T>) super.getUltimoNodo();
         tamanio = super.getTamanio();
-        return respuesta;
+        return respuesta;}
     }
 
     public boolean isEmpty()
@@ -62,12 +73,12 @@ public class Queue<T> extends ListaEncadenada{
         return tamanio;
     }
 
-    public Nodo<T> darPrimero()
+    public Nodo<T> peek()
     {
         return first;
     }
 
-    public Nodo<T> darUltimo()
+    public Nodo<T> peekLast()
     {
         return last;
     }

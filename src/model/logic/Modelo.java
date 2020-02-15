@@ -2,9 +2,6 @@ package model.logic;
 
 import model.data_structures.*;
 
-import java.lang.reflect.Type;
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -41,8 +38,8 @@ public class Modelo<T> {
 				colaComparendos.enqueue(nodoComparendo);
 				pilaComparendos.push(nodoComparendo);
 			});
-			primeroPila = ""+ultimo.getFeature().toString();
-			primeroCola = ""+primero.getFeature().toString();
+			primeroPila = ""+ultimo.getInfo().toString();
+			primeroCola = ""+primero.getInfo().toString();
 			tamanio = pilaComparendos.getSize();
 		}catch (Exception e){e.printStackTrace();}
 	}
@@ -50,28 +47,52 @@ public class Modelo<T> {
 		return tamanio;
 	}
 	public Queue<T> procesarCluster(){
-		Queue<T> cluster = null;
-		Nodo<Features> referencia = (Nodo<Features>) colaComparendos.dequeue();
-		String infracRef = referencia.getFeature().getProperties().getDES_INFRAC();
-		cluster.enqueue((Nodo<T>) referencia);
-		while (referencia!= null && !colaComparendos.isEmpty()){
-			Nodo<Features> evaluado = (Nodo<Features>) colaComparendos.dequeue();
-			String comp = evaluado.getFeature().getProperties().getDES_INFRAC();
-			if(infracRef.equals(comp)){
-				colaComparendos.enqueue((Nodo<T>) evaluado);
-			}else{
-				referencia = evaluado;
+		Queue<Queue<T>> cluster = new Queue<Queue<T>>(null);
+		Queue<T> temp = null;
+		Nodo<Features> nodoRef = (Nodo<Features>) colaComparendos.dequeue();
+		temp = new Queue<T>((Nodo<T>)nodoRef);
+		while(!colaComparendos.isEmpty()){
+			String strRef = nodoRef.getInfo().getProperties().getINFRACCION();
+			Nodo<Features> iter = (Nodo<Features>)colaComparendos.dequeue();
+			String strIter = iter.getInfo().getProperties().getINFRACCION();
+			if (strRef.equals(strIter)){
+				temp.enqueue((Nodo<T>) iter);
+			}else {
+				Nodo<Queue<T>> nodoTemp = new Nodo<Queue<T>>(null, temp);
+				cluster.enqueue(nodoTemp);
+				nodoRef = iter;
 			}
 		}
-		return cluster;
+		Nodo<Queue<T>> evaluado = cluster.peekLast();
+		Nodo<Queue<T>> rta = null;
+		int mayor = 0;
+		while(evaluado != null){
+			int tamanio = evaluado.getInfo().size();
+			if (tamanio> mayor){
+				mayor = tamanio;
+				rta = evaluado;
+				evaluado = evaluado.getSiguiente();
+			}
+			else
+			{
+				evaluado = evaluado.getSiguiente();
+			}
+		}
+
+		assert rta != null;
+		return rta.getInfo();
 	}
 	public Queue<T> procesarStack(int numElementos, String infraccion){
 		Queue<T> rta = null;
-		int contador = 0;
+		int tamanio = 0;
+		rta = new Queue<T>(null);
+		rta.setTamanio(0);
 		Nodo<Features> evaluado = (Nodo<Features>) pilaComparendos.pop();
-		while (contador<=numElementos && !pilaComparendos.isEmpty()){
-			if (evaluado.getFeature().getProperties().getINFRACCION().equals(infraccion)){
+		while (tamanio<numElementos && !pilaComparendos.isEmpty()){
+			if (evaluado.getInfo().getProperties().getINFRACCION().equals(infraccion)){
 				rta.enqueue((Nodo<T>) evaluado);
+				tamanio = rta.size();
+				evaluado = (Nodo<Features>) pilaComparendos.pop();
 			}
 			else
 			{

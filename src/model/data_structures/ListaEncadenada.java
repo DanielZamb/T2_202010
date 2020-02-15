@@ -18,7 +18,7 @@ public class ListaEncadenada<T>{
     }
 
     public void Iterador(String ControlS,Nodo<T> primeroPersonal) throws Exception {
-        iter = new IteratorLista(this,ControlS,primeroPersonal);
+        iter = (IteratorLista<T>) new IteratorLista((ListaEncadenada<T>) this,ControlS,(Nodo<T>)primeroPersonal);
     }
 
     public Nodo<T> consultarActual() {
@@ -48,6 +48,9 @@ public class ListaEncadenada<T>{
         this.tamanio = tamanio;
     }
 
+    public void setPrimeroAntiguo(Nodo<T> primeroAntiguo) {
+        this.primeroAntiguo = primeroAntiguo;
+    }
 
     public void setUltimoNodo(Nodo<T> ultimoNodo) {
         this.ultimoNodo = ultimoNodo;
@@ -88,7 +91,9 @@ public class ListaEncadenada<T>{
             while(evaluado != null && !encontro){
                 encontro = (iterador == pos);
                 if (encontro) buscado = evaluado;
-                else iterador++;
+                else {
+                    evaluado = evaluado.getSiguiente();
+                    iterador++;}
             }
         }
         return buscado;
