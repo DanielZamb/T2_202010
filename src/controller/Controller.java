@@ -52,6 +52,7 @@ public class Controller {
 				    view.printMessage("Primer comparendo de Queue:\n"+"\t"+mdl.getPrimeroCola()+ "\n---------");
 				    view.printMessage("Primer comparendo de Stack:\n"+"\t"+mdl.getPrimeroPila()+ "\n---------");
 					break;
+					// y este si compila pero se demora mucho.
 				case 2:
 					view.printMessage("--------- \nHallar Cluster de comparendos en Queue: ");
 					view.printMessage("Loading...");
@@ -64,6 +65,7 @@ public class Controller {
 						actual = actual.getSiguiente();
 					}
 				break;
+					//Ahora este si funciona.
 				case 3:
 					view.printMessage("--------- \nDar Queue con comparendos procesados del Stack: ");
 					view.printMessage("--------- \nDigite el numero de elementos a procesar");
